@@ -1,3 +1,7 @@
+<?php 
+    require_once __DIR__ . "/functions.php";
+?>
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -20,16 +24,8 @@
 
     <?php
         if (isset($_GET['length'])){
-            $passwordLength = $_GET['length'];
-            
-            $characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?#@";
-            $password = "";
-
-            for($i = 0; $i <$passwordLength; $i++){
-                //aggiungo un carattere casuale 
-                $randomIndex = random_int(0, strlen($characters) -1);
-                $password .= $characters[$randomIndex];
-            }
+            $passwordLength = (int) $_GET['length'];
+            $password = generaPassword($passwordLength);
             echo "La Password Generata è: " . $password;
         } 
     ?>
