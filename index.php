@@ -10,11 +10,28 @@
     <form action="" method="GET">
         <label for="password_length">Inserisci la lunghezza della password da generare</label>
         <input type="number"
-        id="password_length" 
+        id="password_length"
+        name="length" 
         min="4" 
         max="30" 
         required>
         <button type="submit">invia</button>
     </form>
+
+    <?php
+        if (isset($_GET['length'])){
+            $passwordLength = $_GET['length'];
+            
+            $characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?#@";
+            $password = "";
+
+            for($i = 0; $i <$passwordLength; $i++){
+                //aggiungo un carattere casuale 
+                $randomIndex = random_int(0, strlen($characters) -1);
+                $password .= $characters[$randomIndex];
+            }
+            echo "La Password Generata è: " . $password;
+        } 
+    ?>
 </body>
 </html>
